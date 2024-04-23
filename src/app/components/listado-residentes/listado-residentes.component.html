@@ -1,0 +1,61 @@
+<mat-toolbar>
+    <span>Residentes Quilacanta</span>
+</mat-toolbar>
+
+<mat-card>
+    <!--Filtro-->
+    <mat-card-header>
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput autocomplete="off" #input (keyup)="applyFilter($event)">
+    </mat-form-field>
+    <button mat-raised-butt on color="primary" class="btnAgregar">Agregar</button>
+</mat-card-header>
+    <!--Tabla de contenidos-->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z9" matSort>
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre(s) </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+        <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rut">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rut </th>
+            <td mat-cell *matCellDef="let element"> {{element.rut}} </td>
+        </ng-container>
+        <ng-container matColumnDef="edad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Edad </th>
+            <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+        </ng-container>
+        <ng-container matColumnDef="torre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Torre </th>
+            <td mat-cell *matCellDef="let element"> {{element.torre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="departamento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Departamento </th>
+            <td mat-cell *matCellDef="let element"> {{element.departamento}} </td>
+        </ng-container>
+        <ng-container matColumnDef="num_telefono">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+            <td mat-cell *matCellDef="let element"> {{element.num_telefono}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon class="btnEdit" matTooltip="Editar a {{ element.nombres}}">edit</mat-icon>
+                <mat-icon class="btnDelete" matTooltip="Eliminar a {{ element.nombres}}">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!--Paginador-->
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
+
+
+</mat-card>
