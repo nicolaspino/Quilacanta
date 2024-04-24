@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Residente } from 'src/app/interfaces/residente';
+import { AgregarEditarResidenteComponent } from '../agregar-editar-residente/agregar-editar-residente.component';
 
 const listadoResidentes: Residente[] = [
   {nombres: "Nicolas Alexander", apellidos:"Pino Arraño", rut:"18328156-9", edad:31, num_telefono:942860900, torre:14, departamento:1434},
@@ -24,7 +26,7 @@ export class ListadoResidentesComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(){
+  constructor(public dialog: MatDialog){
     //nueva instancia con datos de constante
     this.dataSource = new MatTableDataSource(listadoResidentes);
   }
@@ -46,6 +48,13 @@ export class ListadoResidentesComponent implements OnInit, AfterViewInit{
       this.dataSource.paginator.firstPage();
     }
     // console.log(filterValue)
+  }
+
+  addEditResidente(): void{
+    const dialogRef = this.dialog.open(AgregarEditarResidenteComponent  , {
+      width: '250px',
+    });
+
   }
 
 }

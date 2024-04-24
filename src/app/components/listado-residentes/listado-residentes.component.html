@@ -9,7 +9,7 @@
         <mat-label>Filter</mat-label>
         <input matInput autocomplete="off" #input (keyup)="applyFilter($event)">
     </mat-form-field>
-    <button mat-raised-butt on color="primary" class="btnAgregar">Agregar</button>
+    <button mat-raised-butt on color="primary" class="btnAgregar" (click)="addEditResidente()">Agregar</button>
 </mat-card-header>
     <!--Tabla de contenidos-->
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z9" matSort>
